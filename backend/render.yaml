@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: tyche-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    # Render requires sticky sessions for Socket.io.
+    # Set sessionAffinity to true in the Render dashboard under Settings.
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: SOMNIA_RPC_URL
+        value: https://dream-rpc.somnia.network
+      - key: CHAIN_ID
+        value: "50312"
+      - key: CONTRACT_SCORE_REGISTRY
+        value: 0x90ab2482E83BE7A1Ae550b8C789bc6701267adA0
+      - key: CONTRACT_MARKET_ADAPTER
+        value: 0x3728Df6fF0cCcEeFd6E98c88beeCfc308Af4F1E4
+      - key: CONTRACT_SEASON_MANAGER
+        value: 0x2720aE609232892118aDC314f44679dB13F50267
+      - key: CONTRACT_MOCK_MARKET
+        value: 0xA278c23F935980d903E8Da3d25379b2B5Ec3D16a
+      - key: ETH_MAINNET_RPC
+        value: https://eth.llamarpc.com
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tyche-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: tyche-redis
+          type: redis
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PINATA_API_KEY
+        sync: false
+      - key: PINATA_SECRET_API_KEY
+        sync: false
+
+databases:
+  - name: tyche-db
+    databaseName: tyche
+    plan: free
+
+  - name: tyche-redis
+    type: redis
+    plan: free

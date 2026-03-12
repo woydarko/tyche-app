@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #030712;
+  --foreground: #f9fafb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #030712;
+  color: #f9fafb;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Tier badge glow */
+.tier-oracle {
+  box-shadow: 0 0 12px rgba(192, 132, 252, 0.4);
+}
+
+/* Smooth row reorder */
+.leaderboard-row {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Flash animation */
+@keyframes flashGreen {
+  0% { background-color: transparent; }
+  30% { background-color: rgba(34, 197, 94, 0.12); }
+  100% { background-color: transparent; }
+}
+
+.flash-green {
+  animation: flashGreen 1s ease-in-out;
+}
+
+/* Score ring animation */
+@keyframes drawRing {
+  from { stroke-dashoffset: 302; }
+  to { stroke-dashoffset: var(--target-offset); }
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.card-hover:hover {
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Line clamp */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+/* Prose link */
+a.prose-link {
+  color: #a855f7;
+  text-decoration: none;
+}
+
+a.prose-link:hover {
+  color: #c084fc;
+  text-decoration: underline;
+}
