@@ -53,3 +53,6 @@ private_key*
 frontend/.next/
 frontend/tsconfig.tsbuildinfo
 frontend/node_modules/
+
+.mcp.json
+.claude/
